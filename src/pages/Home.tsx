@@ -102,10 +102,10 @@ export default function Home() {
       <ElasticsearchOnly />
       <FeatureCards />
       <UseCases />
-      <OurValues />
       <KubernetesSection />
       <DockerSection />
       <WeWorkTogether />
+      <OurValues />
       <Faq />
     </>
   );
