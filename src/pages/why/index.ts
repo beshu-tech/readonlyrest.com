@@ -19,6 +19,10 @@ export interface UseCase {
   blurb: string;
   /** Icon shown on the home page card. */
   icon: IconName;
+  /** Accent color (hex) used by the home card + its landing-page hero. */
+  color: string;
+  /** Short tag text displayed on the home card pill. */
+  tag: string;
 }
 
 export const USE_CASES: readonly UseCase[] = [
@@ -29,6 +33,8 @@ export const USE_CASES: readonly UseCase[] = [
     blurb:
       'SAML, OIDC, LDAP and Kerberos on any Elastic tier — including Basic.',
     icon: 'key',
+    color: '#0b847a',
+    tag: 'Identity',
   },
   {
     slug: 'fls-dls-without-platinum',
@@ -37,6 +43,8 @@ export const USE_CASES: readonly UseCase[] = [
     blurb:
       'Index, field and document-level access control without upgrading the cluster.',
     icon: 'lock',
+    color: '#ec407a',
+    tag: 'Access control',
   },
   {
     slug: 'secure-kibana-embeds',
@@ -45,6 +53,8 @@ export const USE_CASES: readonly UseCase[] = [
     blurb:
       'Embed dashboards in your app with per-user data via JWT — no shared passwords, no proxies.',
     icon: 'eye-off',
+    color: '#4f46e5',
+    tag: 'SaaS embedding',
   },
   {
     slug: 'platinum-on-basic-cloud',
@@ -53,5 +63,7 @@ export const USE_CASES: readonly UseCase[] = [
     blurb:
       'Keep data in the cheapest Elastic Cloud tier; enforce enterprise auth in a ReadonlyREST sidecar.',
     icon: 'cloud',
+    color: '#2563eb',
+    tag: 'Architecture',
   },
 ];
