@@ -1,0 +1,36 @@
+# https://readonlyrest.com/robots.txt
+# Allow all well-behaved crawlers. The portal and customer areas are on a
+# separate host (portal.readonlyrest.com) and remain outside this site.
+
+User-agent: *
+Allow: /
+Disallow: /customer/
+Disallow: /*?utm_
+Disallow: /*?ref=
+
+# Sitemap
+Sitemap: https://readonlyrest.com/sitemap.xml
+
+# Give Googlebot generous crawl budget on the full site
+User-agent: Googlebot
+Allow: /
+
+# Block aggressive AI training crawlers — keep content public for search,
+# opt out of scraping for model training.
+User-agent: GPTBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: Claude-Web
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /

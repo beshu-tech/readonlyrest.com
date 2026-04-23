@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml"
+  xmlns:image="http://www.google.com/schemas/sitemap-image/0.9">
+
+  <url>
+    <loc>https://readonlyrest.com/</loc>
+    <lastmod>2026-04-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://readonlyrest.com/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://readonlyrest.com/"/>
+    <image:image>
+      <image:loc>https://readonlyrest.com/images/hero-deer.png</image:loc>
+      <image:title>ReadonlyREST — security and multi-tenancy for Elasticsearch and Kibana</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://readonlyrest.com/download</loc>
+    <lastmod>2026-04-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://readonlyrest.com/download"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://readonlyrest.com/download"/>
+    <image:image>
+      <image:loc>https://readonlyrest.com/images/download-hero-banner.png</image:loc>
+      <image:title>Download ReadonlyREST for Elasticsearch and Kibana</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://readonlyrest.com/why/sso-without-platinum</loc>
+    <lastmod>2026-04-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://readonlyrest.com/why/sso-without-platinum"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://readonlyrest.com/why/sso-without-platinum"/>
+    <image:image>
+      <image:loc>https://readonlyrest.com/images/ldap-saml-auth.png</image:loc>
+      <image:title>SSO for Elasticsearch and Kibana without Platinum</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://readonlyrest.com/why/fls-dls-without-platinum</loc>
+    <lastmod>2026-04-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://readonlyrest.com/why/fls-dls-without-platinum"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://readonlyrest.com/why/fls-dls-without-platinum"/>
+    <image:image>
+      <image:loc>https://readonlyrest.com/images/testable-acl.png</image:loc>
+      <image:title>Field and document-level security for Elasticsearch without Platinum</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://readonlyrest.com/why/secure-kibana-embeds</loc>
+    <lastmod>2026-04-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://readonlyrest.com/why/secure-kibana-embeds"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://readonlyrest.com/why/secure-kibana-embeds"/>
+    <image:image>
+      <image:loc>https://readonlyrest.com/images/hide-kibana-apps.png</image:loc>
+      <image:title>Secure Kibana dashboard embeds with per-user JWT</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://readonlyrest.com/why/platinum-on-basic-cloud</loc>
+    <lastmod>2026-04-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://readonlyrest.com/why/platinum-on-basic-cloud"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://readonlyrest.com/why/platinum-on-basic-cloud"/>
+    <image:image>
+      <image:loc>https://readonlyrest.com/images/elastic-cloud-ccs.png</image:loc>
+      <image:title>Platinum features on basic Elastic Cloud via ReadonlyREST sidecar</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://readonlyrest.com/privacy</loc>
+    <lastmod>2026-04-23</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://readonlyrest.com/privacy"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://readonlyrest.com/privacy"/>
+  </url>
+
+  <url>
+    <loc>https://readonlyrest.com/terms</loc>
+    <lastmod>2026-04-23</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://readonlyrest.com/terms"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://readonlyrest.com/terms"/>
+  </url>
+
+</urlset>

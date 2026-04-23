@@ -1,0 +1,18 @@
+# Netlify / Cloudflare Pages redirects.
+#
+# The `vite build` + prerender plugin emits a prerendered `index.html` for
+# every known route (e.g. `/why/sso-without-platinum/index.html`). Most
+# static hosts auto-resolve `/path` to `/path/index.html` — but SPA routing
+# for deep links not covered by prerender still needs a fallback.
+#
+# This file:
+#   1. No explicit rewrites for prerendered routes — the hosts' built-in
+#      directory-index resolution handles them.
+#   2. A final catch-all so any client-side route (hash anchors, query
+#      strings on known paths) still hits the SPA shell with HTTP 200 (not
+#      302) so crawlers see the right URL.
+#
+# If the target host isn't Netlify/Cloudflare Pages, translate this to the
+# equivalent config (e.g. `vercel.json` rewrites, or nginx `try_files`).
+
+/*    /index.html   200

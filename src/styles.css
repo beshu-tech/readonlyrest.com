@@ -1,0 +1,353 @@
+@import "tailwindcss";
+
+@source "../src/**/*.{ts,tsx,html}";
+@source "../index.html";
+
+@theme {
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+
+  --color-ink: rgb(55 53 47);
+  --color-ink-soft: rgb(55 53 47 / 0.65);
+  --color-teal: #0b847a;
+  --color-teal-hover: #0a6f67;
+  --color-hot-pink: #ec407a;
+  --color-surface: #ffffff;
+  --color-surface-soft: #f7f5f2;
+  --color-surface-dark: #0a0a0a;
+  --color-surface-dark-2: #131315;
+  --color-surface-dark-3: #1a1a1c;
+  --color-border-subtle: rgb(233 233 231);
+  --color-border-dark: rgb(255 255 255 / 0.08);
+
+  --shadow-card: 0 8px 20px -9px rgb(0 0 0 / 0.25);
+  --shadow-card-lg: 0 24px 60px -20px rgb(0 0 0 / 0.35);
+  --shadow-nav: 0 1px 0 0 rgb(0 0 0 / 0.05);
+
+  --radius-card: 6px;
+  --radius-btn: 4px;
+
+  --container-page: 1240px;
+  --page-inline-padding: clamp(1rem, 4vw, 2rem);
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    color: var(--color-ink);
+    background: var(--color-surface);
+    line-height: 1.55;
+    font-size: 17px;
+    overflow-x: hidden;
+    max-width: 100%;
+  }
+
+  /* Type scale — h1 is uniquely dominant, h2 subordinate, h3 smaller still */
+  main h1 {
+    font-size: clamp(38px, 5.6vw, 68px);
+    font-weight: 800;
+    letter-spacing: -0.022em;
+    line-height: 1.04;
+  }
+
+  main h2 {
+    font-size: clamp(30px, 3.4vw, 46px);
+    font-weight: 800;
+    letter-spacing: -0.018em;
+    line-height: 1.08;
+  }
+
+  main h3 {
+    font-size: clamp(20px, 1.8vw, 24px);
+    font-weight: 700;
+    letter-spacing: -0.005em;
+    line-height: 1.25;
+  }
+
+  main h4 {
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: -0.005em;
+  }
+
+  main p { font-size: 17px; }
+}
+
+@utility page {
+  width: 100%;
+  max-width: var(--container-page);
+  margin-inline: auto;
+  padding-inline: var(--page-inline-padding);
+}
+
+@utility page-narrow {
+  width: 100%;
+  max-width: 980px;
+  margin-inline: auto;
+  padding-inline: var(--page-inline-padding);
+}
+
+@utility btn-teal {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+  background: var(--color-teal);
+  color: #fff !important;
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius-btn);
+  font-weight: 600;
+  text-decoration: none !important;
+  transition: background-color 0.15s ease, transform 0.15s ease;
+  &:hover { background: var(--color-teal-hover); color: #fff !important; }
+  &:visited { color: #fff !important; }
+}
+
+@utility btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius-btn);
+  border: 1px solid rgb(0 0 0 / 0.12);
+  background: #fff;
+  color: var(--color-ink);
+  font-weight: 600;
+  text-decoration: none !important;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+  &:hover { background: rgb(0 0 0 / 0.03); border-color: rgb(0 0 0 / 0.2); }
+}
+
+@utility btn-ghost-dark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius-btn);
+  border: 1px solid rgb(255 255 255 / 0.22);
+  background: transparent;
+  color: #fff !important;
+  font-weight: 600;
+  text-decoration: none !important;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+  &:hover { background: rgb(255 255 255 / 0.06); border-color: rgb(255 255 255 / 0.45); }
+}
+
+@utility btn-outline-ink {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  border: 1.5px solid var(--color-ink);
+  border-radius: 4px;
+  text-decoration: none !important;
+  color: var(--color-ink);
+  transition: background-color 0.15s ease, color 0.15s ease;
+  &:hover { background: var(--color-ink); color: #fff !important; }
+}
+
+@utility btn-teal-nav {
+  height: 38px;
+  padding: 0 14px;
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+@utility card {
+  background: #fff;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-card);
+  padding: 1.5rem;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+@utility card-hover {
+  &:hover {
+    border-color: rgb(0 0 0 / 0.15);
+    box-shadow: var(--shadow-card-lg);
+    transform: translateY(-1px);
+  }
+}
+
+@utility card-dark {
+  background: var(--color-surface-dark-2);
+  border: 1px solid var(--color-border-dark);
+  border-radius: var(--radius-card);
+  padding: 1.5rem;
+}
+
+@utility section-dark {
+  background: var(--color-surface-dark);
+  color: #fff;
+  & h2, & h3, & h4 { color: #fff; }
+}
+
+@utility section-dark-2 {
+  background: var(--color-surface-dark-2);
+  color: #fff;
+  & h2, & h3, & h4 { color: #fff; }
+}
+
+@utility section-soft {
+  background: var(--color-surface-soft);
+}
+
+@utility section-teal {
+  background: var(--color-teal);
+  color: #fff;
+  & h2, & h3 { color: #fff; }
+}
+
+@utility eyebrow {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-hot-pink);
+}
+
+@utility eyebrow-muted {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+}
+
+@utility eyebrow-dark {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgb(255 255 255 / 0.55);
+}
+
+@utility stat-num {
+  font-size: clamp(36px, 4.4vw, 56px);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1;
+}
+
+@layer base {
+  main a {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-color: rgb(0 0 0 / 0.22);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    transition: text-decoration-color 0.15s ease;
+    &:hover { text-decoration-color: currentColor; }
+  }
+
+  .section-dark a,
+  .section-dark-2 a {
+    text-decoration-color: rgb(255 255 255 / 0.3);
+  }
+}
+
+.code-block {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  background: rgb(255 255 255 / 0.96);
+  color: rgb(55 53 47);
+  border-radius: 4px;
+  padding: 0.85rem 1.1rem;
+  font-size: 13.5px;
+  line-height: 1.55;
+  overflow-x: auto;
+  white-space: pre;
+  max-width: 100%;
+}
+
+.inline-code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  background: rgb(135 131 120 / 0.15);
+  color: #c23c66;
+  padding: 0.1em 0.35em;
+  border-radius: 3px;
+  font-size: 0.9em;
+  word-break: break-word;
+}
+
+/* Feature check lists (replaces emoji bullets) */
+.check-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.check-list li {
+  position: relative;
+  padding-left: 28px;
+  margin-top: 10px;
+}
+.check-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 16px;
+  height: 16px;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%230b847a' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='3 8.5 6.5 12 13 4.5'/></svg>");
+  background-size: 16px 16px;
+  background-repeat: no-repeat;
+}
+.section-dark .check-list li::before,
+.section-dark-2 .check-list li::before {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%234fd1c5' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='3 8.5 6.5 12 13 4.5'/></svg>");
+}
+
+/* Optional: apply a single hot-pink accent underline on exactly ONE element per page
+   use <h2 className="accent-bar">...</h2> */
+@utility accent-bar {
+  position: relative;
+  padding-bottom: 14px;
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 3px;
+    width: 44px;
+    background: var(--color-hot-pink);
+    border-radius: 2px;
+  }
+}
+.text-center.accent-bar::after {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Dark variant for TestimonialCards on the Download page. Overrides the
+   ink/teal utility colours inside the testimonial list without rewriting
+   the card itself. Plain selectors — no arbitrary-selector escaping. */
+.testimonials-dark-overrides li {
+  background: rgb(255 255 255 / 0.04) !important;
+  border-color: rgb(255 255 255 / 0.1) !important;
+}
+.testimonials-dark-overrides .text-\[color\:var\(--color-ink\)\] {
+  color: #fff !important;
+}
+.testimonials-dark-overrides .text-\[color\:var\(--color-ink-soft\)\] {
+  color: rgb(255 255 255 / 0.7) !important;
+}
+.testimonials-dark-overrides blockquote {
+  color: rgb(255 255 255 / 0.85) !important;
+}

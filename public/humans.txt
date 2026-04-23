@@ -1,0 +1,20 @@
+# humanstxt.org
+# We are small, humble, and care about security.
+
+/* TEAM */
+Founder & CEO: Simone Scarduzio
+Site: https://readonlyrest.com
+Twitter: @readonlyrest
+GitHub: @sscarduzio
+From: Italy
+
+/* THANKS */
+Every customer who filed a good issue report.
+Every reviewer who read the config before shipping to prod.
+The Elastic community for building the stack we secure.
+
+/* SITE */
+Last update: 2026/04/23
+Language: English
+Standards: HTML5, CSS3, JSON-LD, OpenGraph
+Components: React 19, Vite, TypeScript, Tailwind, vite-react-ssg

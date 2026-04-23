@@ -1,0 +1,7 @@
+# security.txt — RFC 9116
+Contact: mailto:security@readonlyrest.com
+Contact: https://readonlyrest.com/contact
+Expires: 2027-04-23T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://readonlyrest.com/.well-known/security.txt
+Policy: https://readonlyrest.com/security
