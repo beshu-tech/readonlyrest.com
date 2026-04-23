@@ -27,7 +27,9 @@ type IconName =
   | 'forum'
   | 'external'
   | 'info'
-  | 'chat';
+  | 'chat'
+  | 'copy'
+  | 'terminal';
 
 type Props = Omit<SVGProps<SVGSVGElement>, 'name'> & {
   name: IconName;
@@ -191,6 +193,18 @@ const PATHS: Record<IconName, JSX.Element> = {
   chat: (
     <>
       <path d="M21 12a8 8 0 0 1-11.6 7.2L4 21l1.8-5.4A8 8 0 1 1 21 12z" />
+    </>
+  ),
+  copy: (
+    <>
+      <rect x="9" y="9" width="12" height="12" rx="2" />
+      <path d="M5 15V5a2 2 0 0 1 2-2h10" />
+    </>
+  ),
+  terminal: (
+    <>
+      <rect x="3" y="4" width="18" height="16" rx="2" />
+      <path d="M7 9l3 3-3 3M13 15h4" />
     </>
   ),
 };

@@ -1,10 +1,13 @@
 import type { ReactNode } from 'react';
 import Icon, { type IconName } from '../Icon';
 
+type Tier = 'Free' | 'PRO' | 'Enterprise';
+
 interface Card {
   title: string;
   image: string;
   icon: IconName;
+  tier: Tier;
   body: ReactNode;
   cta?: { label: string; href: string };
 }
@@ -14,6 +17,7 @@ const CARDS: readonly Card[] = [
     title: 'Tweak the Look & Feel in Kibana',
     image: '/images/kibana-tweaked-css.png',
     icon: 'layers',
+    tier: 'PRO',
     body: (
       <>
         <p>
@@ -36,6 +40,7 @@ const CARDS: readonly Card[] = [
     title: 'Off-site auditing & monitoring',
     image: '/images/kibana-audit-monitoring.png',
     icon: 'chart',
+    tier: 'Enterprise',
     body: (
       <>
         <p>
@@ -57,6 +62,7 @@ const CARDS: readonly Card[] = [
     title: 'Efficient data segregation',
     image: '/images/data-segregation.png',
     icon: 'layers',
+    tier: 'Enterprise',
     body: (
       <>
         <p>
@@ -84,6 +90,7 @@ const CARDS: readonly Card[] = [
     title: 'Bring your own authentication',
     image: '/images/ldap-saml-auth.png',
     icon: 'key',
+    tier: 'Enterprise',
     body: (
       <>
         <p>
@@ -108,6 +115,7 @@ const CARDS: readonly Card[] = [
     title: 'Elastic Cloud integration',
     image: '/images/elastic-cloud-ccs.png',
     icon: 'cloud',
+    tier: 'Enterprise',
     body: (
       <>
         <p>
@@ -136,6 +144,7 @@ const CARDS: readonly Card[] = [
     title: 'Only show the right Kibana apps',
     image: '/images/hide-kibana-apps.png',
     icon: 'eye-off',
+    tier: 'PRO',
     body: (
       <>
         <p>Should the sales team use the machine learning app?</p>
@@ -155,6 +164,7 @@ const CARDS: readonly Card[] = [
     title: 'Reboot-less security settings editor',
     image: '/images/reboot-less-settings.png',
     icon: 'gauge',
+    tier: 'PRO',
     body: (
       <>
         <p>
@@ -177,6 +187,7 @@ const CARDS: readonly Card[] = [
     title: 'Testable access control',
     image: '/images/testable-acl.png',
     icon: 'git',
+    tier: 'Enterprise',
     body: (
       <>
         <p>
@@ -212,6 +223,35 @@ type Palette = (typeof PILL_PALETTES)[number];
 /** Safe lookup that rotates through the palette list by index. */
 function palette(i: number): Palette {
   return PILL_PALETTES[i % PILL_PALETTES.length] ?? PILL_PALETTES[0];
+}
+
+/**
+ * Subscription-tier pill shown on each feature card, matching the
+ * ReadonlyREST commercial plans. Free = muted, PRO = teal, Enterprise
+ * = hot pink, so the tier hierarchy reads at a glance.
+ */
+function TierBadge({ tier, theme }: { tier: Tier; theme: 'light' | 'dark' }) {
+  const isDark = theme === 'dark';
+  const styles: Record<Tier, string> = isDark
+    ? {
+        Free: 'border-white/25 text-white/85 bg-white/10',
+        PRO: 'border-[color:var(--color-teal)]/50 text-[color:var(--color-teal)] bg-[color:var(--color-teal)]/15',
+        Enterprise:
+          'border-[color:var(--color-hot-pink)]/50 text-[color:var(--color-hot-pink)] bg-[color:var(--color-hot-pink)]/15',
+      }
+    : {
+        Free: 'border-[color:var(--color-border-subtle)] text-[color:var(--color-ink-soft)] bg-white',
+        PRO: 'border-[color:var(--color-teal)]/40 text-[color:var(--color-teal)] bg-[color:var(--color-teal)]/10',
+        Enterprise:
+          'border-[color:var(--color-hot-pink)]/40 text-[color:var(--color-hot-pink)] bg-[color:var(--color-hot-pink)]/10',
+      };
+  return (
+    <span
+      className={`inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-[10.5px] font-bold uppercase tracking-[0.16em] ${styles[tier]}`}
+    >
+      {tier}
+    </span>
+  );
 }
 
 export default function FeatureCards() {
@@ -276,6 +316,9 @@ export default function FeatureCards() {
                   style={{ color: featuredPalette.tint }}
                 >
                   Featured capability
+                </span>
+                <span className="ml-auto">
+                  <TierBadge tier={featured.tier} theme="light" />
                 </span>
               </div>
               <h3 className="mt-5 !text-[26px] md:!text-[30px] !font-extrabold tracking-tight leading-tight">
@@ -376,7 +419,13 @@ function FeatureCard({
         className="absolute -top-14 -right-14 w-40 h-40 rounded-full opacity-[0.07] group-hover:opacity-20 blur-2xl pointer-events-none transition-opacity"
         style={{ background: palette.tint }}
       />
-      <div className={`relative flex items-start gap-3 ${isDark ? 'px-6 pt-6' : ''}`}>
+
+      {/* Tier badge floats in the top-right corner of every card. */}
+      <div className={`absolute top-4 right-4 z-[1] ${isDark ? '' : ''}`}>
+        <TierBadge tier={card.tier} theme={isDark ? 'dark' : 'light'} />
+      </div>
+
+      <div className={`relative flex items-start gap-3 pr-24 ${isDark ? 'px-6 pt-6' : ''}`}>
         <div
           className={`h-11 w-11 rounded-md flex items-center justify-center shrink-0 ${palette.bg} ${palette.fg}`}
         >
