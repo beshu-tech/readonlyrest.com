@@ -20,8 +20,8 @@ const PLANS: readonly Plan[] = [
     title: 'Free Kibana Plugin',
     tag: 'Free forever',
     tagTone: 'free',
-    image: '/images/kibana-tweaked-css.png',
-    imageAlt: 'ReadonlyREST Free login screen in Kibana',
+    image: '/images/kibana-free-badge.png',
+    imageAlt: 'ReadonlyREST Free \u2014 a herd of colorful elks in a forest',
     blurb: 'The perfect starting point: basic functionality, free forever.',
     features: [
       'Auth: File, LDAP, JWT auth header, External, Proxy',
@@ -34,8 +34,8 @@ const PLANS: readonly Plan[] = [
     title: 'PRO Kibana Plugin',
     tag: 'Pro',
     tagTone: 'pro',
-    image: '/images/hide-kibana-apps.png',
-    imageAlt: 'Hidden Kibana apps view with ReadonlyREST PRO',
+    image: '/images/kibana-pro-badge.png',
+    imageAlt: 'ReadonlyREST PRO \u2014 elks in technicolor hoodies',
     blurb: 'Take ownership of the Kibana experience.',
     inherits: 'Everything in Free, plus:',
     features: [
@@ -72,8 +72,8 @@ const PLANS: readonly Plan[] = [
     title: 'Enterprise Kibana Plugin',
     tag: 'Enterprise',
     tagTone: 'ent',
-    image: '/images/kibana-audit-monitoring.png',
-    imageAlt: 'Audit monitoring dashboard in Kibana with ReadonlyREST Enterprise',
+    image: '/images/kibana-enterprise-badge.png',
+    imageAlt: 'ReadonlyREST Enterprise \u2014 elks in suits',
     blurb: '1000 Kibanas in one cluster, with modern enterprise authentication.',
     inherits: 'Everything in Pro, plus:',
     features: [
