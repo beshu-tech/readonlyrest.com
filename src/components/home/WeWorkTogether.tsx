@@ -1,35 +1,71 @@
 import Icon from '../Icon';
 
+/**
+ * "We will work together" — full-width dark editorial hero with the team
+ * photograph as a right-anchored background image, a left→right dark
+ * gradient ensuring the copy stays legible regardless of image crop,
+ * and an eyebrow + H2 + subhead + dual CTAs stacked on the left.
+ *
+ * Flows directly off the end of the DockerSection so the transition
+ * from "try it yourself" → "talk to the team" feels like one beat.
+ */
 export default function WeWorkTogether() {
   return (
-    <section className="section-dark-2 py-20 md:py-24">
-      <div className="page grid md:grid-cols-2 gap-12 md:gap-16 items-center">
-        <div>
-          <p className="eyebrow-dark">The team</p>
-          <h2 className="mt-3">We will work together.</h2>
-          <p className="mt-6 text-[18px] text-white/80 leading-relaxed max-w-lg">
-            A group of experts with 9+ years of experience in Elastic products focused
-            on security. Your success is our priority.
+    <section
+      aria-label="The team"
+      className="relative isolate overflow-hidden bg-[color:var(--color-surface-dark)] text-white"
+    >
+      <img
+        src="/images/we-work-together-office.jpg"
+        alt=""
+        aria-hidden
+        loading="lazy"
+        className="absolute inset-0 w-full h-full object-cover object-right"
+      />
+      {/* Horizontal dim: solid dark on the left, fading through transparent
+          on the right so the photograph still reads as context. */}
+      <div
+        aria-hidden
+        className="absolute inset-0"
+        style={{
+          background:
+            'linear-gradient(90deg, rgba(10,10,10,0.94) 0%, rgba(10,10,10,0.85) 35%, rgba(10,10,10,0.55) 60%, rgba(10,10,10,0.2) 100%)',
+        }}
+      />
+      {/* Subtle vertical fade at the bottom to ease into the next section. */}
+      <div
+        aria-hidden
+        className="absolute inset-0"
+        style={{
+          background:
+            'linear-gradient(180deg, rgba(0,0,0,0) 55%, rgba(0,0,0,0.45) 100%)',
+        }}
+      />
+
+      <div className="relative page py-24 md:py-32 min-h-[clamp(440px,58vh,620px)] flex flex-col justify-center">
+        <div className="max-w-xl">
+          <span className="text-[11px] font-bold uppercase tracking-[0.22em] text-white/60">
+            The team
+          </span>
+          <h2 className="mt-5 text-white tracking-tight">
+            We will work together.
+          </h2>
+          <p className="mt-6 text-[18px] md:text-[19px] text-white/80 leading-relaxed">
+            A group of experts with 9+ years of experience in Elastic products
+            focused on security. Your success is our priority.
           </p>
-          <div className="mt-8 flex flex-wrap gap-3">
+          <div className="mt-9 flex flex-wrap items-center gap-3">
             <a href="https://readonlyrest.com/contact" className="btn-teal text-[15px]">
               <Icon name="mail" size={18} />
               Free consultation
             </a>
-            <a href="https://readonlyrest.com/quote" className="btn-ghost-dark text-[15px]">
+            <a
+              href="https://readonlyrest.com/quote"
+              className="btn-ghost-dark text-[15px]"
+            >
               Request a quote
             </a>
           </div>
-        </div>
-        <div>
-          <img
-            src="/images/we-work-together-office.jpg"
-            alt="The ReadonlyREST team at work"
-            width={670}
-            height={420}
-            loading="lazy"
-            className="w-full h-auto rounded-[var(--radius-card)]"
-          />
         </div>
       </div>
     </section>
