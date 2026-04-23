@@ -4,106 +4,173 @@ import Icon, { type IconName } from '../Icon';
 interface Value {
   title: string;
   icon: IconName;
+  /** Hex accent — drives corner glow and numeric badge. */
+  accent: string;
+  /** Single-sentence one-liner shown under the title. */
+  lead: string;
+  /** Optional second paragraph for the "read more" zone at the bottom. */
   body: ReactNode;
-  hero?: boolean;
 }
 
 const VALUES: readonly Value[] = [
   {
     title: 'Security through simplicity',
     icon: 'shield',
-    hero: true,
+    accent: '#0b847a',
+    lead: 'Convention over configuration. The weakest link in security is human error.',
     body: (
       <>
-        <p>
-          Since 2013 ReadonlyREST has been a reference in Elasticsearch and Kibana
-          security.
-        </p>
-        <p className="mt-3">
-          The weakest link in security is human error. That&apos;s why we embrace
-          &ldquo;convention over configuration&rdquo;.
-        </p>
-        <p className="mt-3">
-          As a side effect, our solution{' '}
-          <strong>integrates in hours</strong> — not days or weeks.
-        </p>
+        A reference in Elasticsearch and Kibana security since 2013. As a side
+        effect, our solution <strong className="text-white">integrates in hours</strong>
+        {' '}— not days or weeks.
       </>
     ),
   },
   {
     title: 'Performance',
     icon: 'gauge',
+    accent: '#ec407a',
+    lead: 'Forged in banking, ad-tech, and CERN-scale write rates.',
     body: (
-      <p>
-        Forged by experience in extra-large clusters (banking, ad-tech) and wildly fast
-        write rates (CERN). Our software can take the challenge.
-      </p>
+      <>
+        Our software has been battle-tested on extra-large clusters with the
+        hardest read and write workloads in the industry.
+      </>
     ),
   },
   {
     title: 'Accountability',
     icon: 'users',
+    accent: '#4f46e5',
+    lead: 'The engineers who wrote the code answer your tickets.',
     body: (
-      <p>
-        Best-in-class support: the same engineers who wrote the software answer your
-        SLA support tickets.
-      </p>
+      <>
+        Best-in-class support — no offshore help-desk, no ticket bouncing.
+        An SLA you can read in one page.
+      </>
     ),
   },
   {
     title: 'Continuous improvement',
     icon: 'clock',
+    accent: '#2563eb',
+    lead: 'Monthly releases. Extra releases on new Elastic versions or CVEs.',
     body: (
-      <p>
-        Monthly releases for fixes and features, plus extra releases when a new Elastic
-        version ships or a security fix is needed. Layer after layer, year after year.
-      </p>
+      <>
+        Layer after layer, year after year. Security is a process, not a product.
+      </>
     ),
   },
 ];
 
-const HERO = VALUES.find((v) => v.hero);
-const REST = VALUES.filter((v) => !v.hero);
-
+/**
+ * "How we work" — four numbered pillars.
+ *
+ * Replaces the earlier masonry (1 hero + 3 varied-height cards that
+ * left awkward voids) with an equal-height 4-up pillar layout: every
+ * card same shape, each with a distinct accent colour, numbered 01–04,
+ * icon, lead + body. A stat ribbon underneath anchors the dark section
+ * with concrete proof points.
+ */
 export default function OurValues() {
-  if (!HERO) return null;
-  const hero = HERO;
-  const rest = REST;
-
   return (
-    <section className="section-dark py-20 md:py-24">
-      <div className="page">
-        <div className="max-w-3xl">
-          <p className="eyebrow-dark">Our values</p>
-          <h2 className="mt-3">How we work, in four points.</h2>
+    <section className="relative isolate overflow-hidden bg-[color:var(--color-surface-dark)] text-white py-20 md:py-28">
+      {/* Ambient orbs — pink top-right + teal bottom-left to echo the
+          rhythm of the home page dark sections. */}
+      <div
+        aria-hidden
+        className="absolute -top-40 right-[-10%] w-[560px] h-[560px] rounded-full opacity-30 blur-3xl pointer-events-none"
+        style={{ background: 'radial-gradient(circle, #ec407acc 0%, #ec407a00 65%)' }}
+      />
+      <div
+        aria-hidden
+        className="absolute -bottom-40 left-[-10%] w-[560px] h-[560px] rounded-full opacity-25 blur-3xl pointer-events-none"
+        style={{ background: 'radial-gradient(circle, #0b847acc 0%, #0b847a00 65%)' }}
+      />
+
+      <div className="relative page">
+        <div className="grid md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] gap-10 md:gap-16 items-end">
+          <div>
+            <span className="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/15 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.18em] text-white/80">
+              How we work
+            </span>
+            <h2 className="mt-4 text-white tracking-tight">
+              Four principles, one promise.
+            </h2>
+          </div>
+          <p className="text-[17px] text-white/70 leading-relaxed md:max-w-xl">
+            Since 2017 ReadonlyREST has been a reference in Elasticsearch and
+            Kibana security. These four principles are why customers keep
+            renewing.
+          </p>
         </div>
 
-        <div className="mt-12 grid lg:grid-cols-12 gap-5">
-          {/* Hero value — large card */}
-          <article className="lg:col-span-6 card-dark p-8 md:p-10 flex flex-col">
-            <div className="h-12 w-12 rounded-md bg-[color:var(--color-teal)]/20 text-[color:var(--color-teal)] flex items-center justify-center">
-              <Icon name={hero.icon} size={26} />
-            </div>
-            <h3 className="mt-6 text-[24px] md:text-[28px]">{hero.title}</h3>
-            <div className="mt-4 text-[17px] text-white/85 leading-relaxed">
-              {hero.body}
-            </div>
-          </article>
+        {/* Pillar grid — equal-height cards, four up on desktop. */}
+        <ol className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {VALUES.map((v, i) => (
+            <li
+              key={v.title}
+              className="group relative rounded-[var(--radius-card)] overflow-hidden bg-white/[0.04] border border-white/10 hover:border-white/25 transition-colors p-7 flex flex-col"
+            >
+              {/* Top accent bar */}
+              <div
+                aria-hidden
+                className="absolute top-0 left-0 right-0 h-[3px] pointer-events-none"
+                style={{ background: v.accent }}
+              />
+              {/* Corner glow brightening on hover */}
+              <div
+                aria-hidden
+                className="absolute -top-20 -right-20 w-48 h-48 rounded-full opacity-25 group-hover:opacity-55 blur-3xl pointer-events-none transition-opacity"
+                style={{ background: `radial-gradient(circle, ${v.accent}ee 0%, ${v.accent}00 60%)` }}
+              />
 
-          {/* Other values — compact cards */}
-          <div className="lg:col-span-6 grid sm:grid-cols-2 gap-5">
-            {rest.map((v) => (
-              <article key={v.title} className="card-dark p-6 flex flex-col">
-                <div className="h-10 w-10 rounded-md bg-white/5 text-white/70 flex items-center justify-center">
-                  <Icon name={v.icon} size={20} />
+              <div className="relative flex items-center justify-between">
+                <div
+                  className="h-11 w-11 rounded-md flex items-center justify-center text-white"
+                  style={{ background: v.accent }}
+                >
+                  <Icon name={v.icon} size={22} />
                 </div>
-                <h3 className="mt-5">{v.title}</h3>
-                <div className="mt-3 text-[15px] text-white/75 leading-relaxed">
-                  {v.body}
-                </div>
-              </article>
-            ))}
-          </div>
+                <span
+                  aria-hidden
+                  className="font-mono text-[12px] font-bold tracking-[0.16em] text-white/50"
+                >
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+              </div>
+
+              <h3 className="relative mt-6 !text-[19px] !font-bold tracking-tight text-white leading-snug">
+                {v.title}
+              </h3>
+              <p className="relative mt-3 text-[14.5px] font-semibold text-white leading-relaxed">
+                {v.lead}
+              </p>
+              <div className="relative mt-3 pt-3 border-t border-white/10 text-[14px] text-white/65 leading-relaxed">
+                {v.body}
+              </div>
+            </li>
+          ))}
+        </ol>
+
+        {/* Stat ribbon as closing proof — fills the negative space the old
+            masonry left behind, and gives the section a grounded ending. */}
+        <div className="mt-10 grid grid-cols-2 md:grid-cols-4 divide-x divide-y md:divide-y-0 divide-white/10 rounded-[var(--radius-card)] overflow-hidden bg-white/[0.03] border border-white/10">
+          {[
+            { v: 'Since 2017', l: 'ReadonlyREST in production' },
+            { v: 'Monthly', l: 'Release cadence' },
+            { v: 'SLA', l: 'Support by the authors' },
+            { v: 'CERN-scale', l: 'Performance-tested' },
+          ].map((s) => (
+            <div key={s.l} className="px-6 py-5 md:px-7 md:py-6">
+              <div className="text-[20px] md:text-[22px] font-extrabold tracking-tight text-white leading-none">
+                {s.v}
+              </div>
+              <div className="mt-2 text-[12.5px] text-white/60 uppercase tracking-[0.1em]">
+                {s.l}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
