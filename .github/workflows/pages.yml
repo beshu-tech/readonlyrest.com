@@ -52,3 +52,10 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+        # GH Pages backend has been stalling in `updating_pages` for more
+        # than the default 600 000 ms (10 min), causing false-positive
+        # deploy failures. Bump the client-side poll timeout so the
+        # action waits longer for the Pages CDN to finalise the upload.
+        with:
+          timeout: 1800000
+          error_count: 20
