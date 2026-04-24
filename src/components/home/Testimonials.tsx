@@ -124,21 +124,6 @@ export default function Testimonials() {
           </ul>
         </div>
 
-        {/* Quotes */}
-        <div className="mt-20">
-          <div className="flex items-end justify-between flex-wrap gap-4">
-            <h3 className="text-[color:var(--color-ink)]">In their words</h3>
-            <a
-              href="https://readonlyrest.com/blog"
-              className="text-[14px] font-semibold text-[color:var(--color-teal)] inline-flex items-center gap-1.5 no-underline hover:underline"
-            >
-              Read all case studies <Icon name="arrow-right" size={14} />
-            </a>
-          </div>
-          <div className="mt-6">
-            <TestimonialCards />
-          </div>
-        </div>
       </div>
     </section>
   );
