@@ -22,7 +22,7 @@ const VALUES: readonly Value[] = [
       <>
         The open-source Elasticsearch plugin has been a reference since
         2013. As a side effect, our solution{' '}
-        <strong className="text-white">integrates in hours</strong> — not
+        <strong className="text-[color:var(--color-ink)]">integrates in hours</strong> — not
         days or weeks.
       </>
     ),
@@ -46,7 +46,7 @@ const VALUES: readonly Value[] = [
     lead: 'The engineers who wrote the code answer your tickets.',
     body: (
       <>
-        Enterprise includes <strong className="text-white">Priority Support</strong> —
+        Enterprise includes <strong className="text-[color:var(--color-ink)]">Priority Support</strong> —
         private email support with a max 2-working-day response SLA.
         No offshore help-desk, no ticket bouncing.
       </>
@@ -76,31 +76,18 @@ const VALUES: readonly Value[] = [
  */
 export default function OurValues() {
   return (
-    <section className="relative isolate overflow-hidden bg-[color:var(--color-surface-dark)] text-white py-20 md:py-28">
-      {/* Ambient orbs — pink top-right + teal bottom-left to echo the
-          rhythm of the home page dark sections. */}
-      <div
-        aria-hidden
-        className="absolute -top-40 right-[-10%] w-[560px] h-[560px] rounded-full opacity-30 blur-3xl pointer-events-none"
-        style={{ background: 'radial-gradient(circle, #ec407acc 0%, #ec407a00 65%)' }}
-      />
-      <div
-        aria-hidden
-        className="absolute -bottom-40 left-[-10%] w-[560px] h-[560px] rounded-full opacity-25 blur-3xl pointer-events-none"
-        style={{ background: 'radial-gradient(circle, #0b847acc 0%, #0b847a00 65%)' }}
-      />
-
+    <section className="section-soft py-20 md:py-28">
       <div className="relative page">
         <div className="grid md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] gap-10 md:gap-16 items-end">
           <div>
-            <span className="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/15 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.18em] text-white/80">
+            <span className="inline-flex items-center gap-2 rounded-full bg-[color:var(--color-hot-pink)]/10 px-3 py-1 text-[12px] font-bold uppercase tracking-[0.16em] text-[color:var(--color-hot-pink)]">
               How we work
             </span>
-            <h2 className="mt-4 text-white tracking-tight">
+            <h2 className="mt-4 tracking-tight">
               Four principles, one promise.
             </h2>
           </div>
-          <p className="text-[17px] text-white/70 leading-relaxed md:max-w-xl">
+          <p className="text-[17px] text-[color:var(--color-ink-soft)] leading-relaxed md:max-w-xl">
             Open-source Elasticsearch plugin since 2013. Commercial Kibana
             plugin since 2017. These four principles are why customers keep
             renewing.
@@ -112,7 +99,7 @@ export default function OurValues() {
           {VALUES.map((v, i) => (
             <li
               key={v.title}
-              className="group relative rounded-[var(--radius-card)] overflow-hidden bg-white/[0.04] border border-white/10 hover:border-white/25 transition-colors p-7 flex flex-col"
+              className="group relative rounded-[var(--radius-card)] overflow-hidden bg-white border border-[color:var(--color-border-subtle)] hover:border-[color:var(--color-ink)]/25 hover:shadow-[var(--shadow-card-lg)] transition-all p-7 flex flex-col"
             >
               {/* Top accent bar */}
               <div
@@ -120,10 +107,10 @@ export default function OurValues() {
                 className="absolute top-0 left-0 right-0 h-[3px] pointer-events-none"
                 style={{ background: v.accent }}
               />
-              {/* Corner glow brightening on hover */}
+              {/* Corner tint that warms up on hover */}
               <div
                 aria-hidden
-                className="absolute -top-20 -right-20 w-48 h-48 rounded-full opacity-25 group-hover:opacity-55 blur-3xl pointer-events-none transition-opacity"
+                className="absolute -top-20 -right-20 w-48 h-48 rounded-full opacity-[0.07] group-hover:opacity-20 blur-3xl pointer-events-none transition-opacity"
                 style={{ background: `radial-gradient(circle, ${v.accent}ee 0%, ${v.accent}00 60%)` }}
               />
 
@@ -136,19 +123,19 @@ export default function OurValues() {
                 </div>
                 <span
                   aria-hidden
-                  className="font-mono text-[12px] font-bold tracking-[0.16em] text-white/50"
+                  className="font-mono text-[12px] font-bold tracking-[0.16em] text-[color:var(--color-ink-soft)]"
                 >
                   {String(i + 1).padStart(2, '0')}
                 </span>
               </div>
 
-              <h3 className="relative mt-6 !text-[19px] !font-bold tracking-tight text-white leading-snug">
+              <h3 className="relative mt-6 !text-[19px] !font-bold tracking-tight leading-snug">
                 {v.title}
               </h3>
-              <p className="relative mt-3 text-[14.5px] font-semibold text-white leading-relaxed">
+              <p className="relative mt-3 text-[14.5px] font-semibold text-[color:var(--color-ink)] leading-relaxed">
                 {v.lead}
               </p>
-              <div className="relative mt-3 pt-3 border-t border-white/10 text-[14px] text-white/65 leading-relaxed">
+              <div className="relative mt-3 pt-3 border-t border-[color:var(--color-border-subtle)] text-[14px] text-[color:var(--color-ink-soft)] leading-relaxed">
                 {v.body}
               </div>
             </li>

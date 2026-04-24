@@ -104,8 +104,8 @@ export default function Home() {
       <UseCases />
       <KubernetesSection />
       <DockerSection />
-      <WeWorkTogether />
       <OurValues />
+      <WeWorkTogether />
       <Faq />
     </>
   );

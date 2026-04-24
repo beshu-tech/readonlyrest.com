@@ -55,18 +55,18 @@ const PLANS: readonly Plan[] = [
  */
 export default function ElasticsearchOnly() {
   return (
-    <section className="section-dark-2 py-20 md:py-28">
+    <section className="section-soft py-20 md:py-28">
       <div className="page">
         <div className="max-w-3xl">
-          <span className="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/15 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.18em] text-white/80">
+          <span className="inline-flex items-center gap-2 rounded-full bg-[color:var(--color-hot-pink)]/10 px-3 py-1 text-[12px] font-bold uppercase tracking-[0.16em] text-[color:var(--color-hot-pink)]">
             Elasticsearch-only users
           </span>
-          <h2 className="mt-4 text-white tracking-tight">No Kibana? No problem.</h2>
-          <p className="mt-5 text-[17px] text-white/75 max-w-2xl leading-relaxed">
+          <h2 className="mt-4 tracking-tight">No Kibana? No problem.</h2>
+          <p className="mt-5 text-[17px] text-[color:var(--color-ink-soft)] max-w-2xl leading-relaxed">
             Two editions of the Elasticsearch plugin, for two licensing realities.{' '}
             <a
               href="#for-kibana"
-              className="text-white underline decoration-white/30 hover:decoration-white underline-offset-4"
+              className="text-[color:var(--color-teal)] hover:underline"
             >
               Also using Kibana?
             </a>

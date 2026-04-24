@@ -11,32 +11,20 @@ const KUBE_BLUE = '#326CE5';
  */
 export default function KubernetesSection() {
   return (
-    <section className="relative isolate overflow-hidden bg-[color:var(--color-surface-dark)] text-white py-20 md:py-28">
-      {/* Ambient orbs — k8s blue on the right, teal on the left. */}
+    <section className="relative isolate overflow-hidden bg-white py-20 md:py-28">
+      {/* Subtle hex-grid backdrop — nods to the k8s wheel, ink-on-white. */}
       <div
         aria-hidden
-        className="absolute -top-40 right-[-10%] w-[560px] h-[560px] rounded-full opacity-30 blur-3xl pointer-events-none"
-        style={{ background: `radial-gradient(circle, ${KUBE_BLUE}cc 0%, ${KUBE_BLUE}00 65%)` }}
-      />
-      <div
-        aria-hidden
-        className="absolute -bottom-40 left-[-10%] w-[520px] h-[520px] rounded-full opacity-20 blur-3xl pointer-events-none"
-        style={{ background: 'radial-gradient(circle, #0b847acc 0%, #0b847a00 65%)' }}
-      />
-
-      {/* Faint hex grid backdrop — nods to the k8s wheel, stays subtle. */}
-      <div
-        aria-hidden
-        className="absolute inset-0 opacity-[0.06] pointer-events-none"
+        className="absolute inset-0 opacity-[0.05] pointer-events-none"
         style={{
           backgroundImage: `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='60' height='52' viewBox='0 0 60 52'><polygon points='30,2 56,16 56,44 30,58 4,44 4,16' fill='none' stroke='${encodeURIComponent(
-            '#ffffff',
+            '#0b847a',
           )}' stroke-width='1'/></svg>")`,
           backgroundSize: '60px 52px',
           maskImage:
-            'radial-gradient(ellipse at center, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.35) 50%, rgba(0,0,0,0) 100%)',
+            'radial-gradient(ellipse at center, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 55%, rgba(0,0,0,0) 100%)',
           WebkitMaskImage:
-            'radial-gradient(ellipse at center, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.35) 50%, rgba(0,0,0,0) 100%)',
+            'radial-gradient(ellipse at center, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 55%, rgba(0,0,0,0) 100%)',
         }}
       />
 
@@ -50,14 +38,14 @@ export default function KubernetesSection() {
             <HexIcon />
             Kubernetes
           </span>
-          <h2 className="mt-5 text-white tracking-tight">
+          <h2 className="mt-5 tracking-tight">
             Kubernetes-native security.
           </h2>
-          <p className="mt-6 text-[18px] md:text-[19px] text-white/80 leading-relaxed">
+          <p className="mt-6 text-[18px] md:text-[19px] text-[color:var(--color-ink)] leading-relaxed">
             Works great with{' '}
             <a
               href="https://www.elastic.co/guide/en/cloud-on-k8s/current/index.html"
-              className="text-white underline decoration-white/30 hover:decoration-white underline-offset-4"
+              className="text-[color:var(--color-teal)] hover:underline"
             >
               Elastic Cloud on Kubernetes (ECK)
             </a>{' '}
@@ -82,7 +70,7 @@ export default function KubernetesSection() {
             ].map((b, i) => (
               <li
                 key={b.t}
-                className="flex items-start gap-4 rounded-[var(--radius-card)] bg-white/[0.04] border border-white/10 p-4"
+                className="flex items-start gap-4 rounded-[var(--radius-card)] bg-white border border-[color:var(--color-border-subtle)] p-4 shadow-[var(--shadow-card)]"
               >
                 <span
                   aria-hidden
@@ -92,8 +80,10 @@ export default function KubernetesSection() {
                   {String(i + 1).padStart(2, '0')}
                 </span>
                 <div>
-                  <p className="text-[15.5px] font-bold text-white">{b.t}</p>
-                  <p className="mt-1 text-[14px] text-white/65 leading-relaxed">
+                  <p className="text-[15.5px] font-bold text-[color:var(--color-ink)]">
+                    {b.t}
+                  </p>
+                  <p className="mt-1 text-[14px] text-[color:var(--color-ink-soft)] leading-relaxed">
                     {b.b}
                   </p>
                 </div>
@@ -112,7 +102,7 @@ export default function KubernetesSection() {
             </a>
             <a
               href="https://www.elastic.co/guide/en/cloud-on-k8s/current/index.html"
-              className="btn-ghost-dark text-[14px]"
+              className="btn-ghost text-[14px]"
             >
               ECK docs
               <Icon name="external" size={12} />
@@ -120,7 +110,9 @@ export default function KubernetesSection() {
           </div>
         </div>
 
-        {/* Right: architecture diagram */}
+        {/* Right: architecture diagram (stays dark — it's meant to feel like
+            a terminal/observability panel, which is visually at home on
+            a dark surface). */}
         <ArchitectureDiagram />
       </div>
     </section>
@@ -142,7 +134,7 @@ export default function KubernetesSection() {
  */
 function ArchitectureDiagram() {
   return (
-    <div className="relative rounded-[var(--radius-card)] border border-white/10 bg-white/[0.03] p-6 md:p-8 overflow-hidden">
+    <div className="relative rounded-[var(--radius-card)] border border-white/10 bg-[color:var(--color-surface-dark)] p-6 md:p-8 overflow-hidden shadow-[var(--shadow-card-lg)]">
       <div
         aria-hidden
         className="absolute -top-24 -right-24 w-[340px] h-[340px] rounded-full opacity-25 blur-3xl pointer-events-none"
