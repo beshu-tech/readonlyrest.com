@@ -111,15 +111,4 @@ export const USE_CASES: readonly UseCase[] = [
     tag: 'DevOps',
     topics: ['Access control', 'Identity'],
   },
-  {
-    slug: 'fips-compliance',
-    title: 'FIPS 140-2 for Elasticsearch',
-    shortLabel: 'FIPS compliance',
-    blurb:
-      'BouncyCastle FIPS crypto for HTTP and inter-node TLS — federal and regulated workloads on any tier.',
-    icon: 'shield',
-    color: '#7c3aed',
-    tag: 'Regulated',
-    topics: ['Compliance'],
-  },
 ];

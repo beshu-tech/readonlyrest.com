@@ -35,7 +35,6 @@ import { SECURE_KIBANA_EMBEDS_DATA } from '@/pages/why/SecureKibanaEmbeds.data';
 import { PLATINUM_ON_BASIC_CLOUD_DATA } from '@/pages/why/PlatinumOnBasicCloud.data';
 import { AUDIT_COMPLIANCE_DATA } from '@/pages/why/AuditCompliance.data';
 import { DEVSECOPS_ACL_TESTING_DATA } from '@/pages/why/DevSecOpsAclTesting.data';
-import { FIPS_COMPLIANCE_DATA } from '@/pages/why/FipsCompliance.data';
 import { PRIVACY_DATA } from '@/pages/legal/Privacy.data';
 import { TERMS_DATA } from '@/pages/legal/Terms.data';
 
@@ -218,7 +217,6 @@ export const ROUTES: readonly RouteMeta[] = [
     PLATINUM_ON_BASIC_CLOUD_DATA,
     AUDIT_COMPLIANCE_DATA,
     DEVSECOPS_ACL_TESTING_DATA,
-    FIPS_COMPLIANCE_DATA,
   ].map<RouteMeta>((d) => {
     const path = `/why/${d.slug}`;
     const meta: RouteMeta = {
