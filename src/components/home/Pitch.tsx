@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import Icon from '../Icon';
 import type { IconName } from '../Icon';
+import SectionEyebrow from '../SectionEyebrow';
 
 /**
  * Pitch — multi-tenancy thesis with security as the enabling capability.
@@ -36,7 +37,7 @@ export default function Pitch() {
     <section id="pitch" className="page py-20 md:py-24">
       <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
         <div>
-          <p className="eyebrow-muted">The problem</p>
+          <SectionEyebrow>The problem</SectionEyebrow>
           <p className="mt-3 text-[22px] md:text-[26px] leading-snug text-[color:var(--color-ink-soft)]">
             Still spinning up a new cluster for each project?
           </p>

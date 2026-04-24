@@ -4,6 +4,7 @@ import Icon, { type IconName } from '@/components/Icon';
 import Accordion, { type FaqItem } from '@/components/Accordion';
 import TestimonialCards from '@/components/TestimonialCards';
 import Seo from '@/seo/Seo';
+import SectionEyebrow from '@/components/SectionEyebrow';
 import {
   organizationSchema,
   websiteSchema,
@@ -294,9 +295,7 @@ export default function UseCasePage(props: UseCasePageProps) {
       <section className="section-soft py-20 md:py-24">
         <div className="page grid md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] gap-12 md:gap-16 items-start">
           <div>
-            <span className="inline-flex items-center gap-2 rounded-full bg-[color:var(--color-hot-pink)]/10 px-3 py-1 text-[12px] font-bold uppercase tracking-[0.16em] text-[color:var(--color-hot-pink)]">
-              The problem
-            </span>
+            <SectionEyebrow>The problem</SectionEyebrow>
             <h2 className="mt-4 accent-bar">{problem.title}</h2>
           </div>
           <div>
@@ -395,12 +394,7 @@ export default function UseCasePage(props: UseCasePageProps) {
       <section className="page py-20 md:py-24">
         <div className="grid md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] gap-12 md:gap-16 items-start">
           <div>
-            <span
-              className="inline-flex items-center gap-2 rounded-full px-3 py-1 text-[12px] font-bold uppercase tracking-[0.16em] text-white"
-              style={{ background: palette.primary }}
-            >
-              The solution
-            </span>
+            <SectionEyebrow accent={palette.primary}>The solution</SectionEyebrow>
             <h2 className="mt-4 accent-bar">{solution.title}</h2>
             <div className="mt-6 text-[17px] leading-relaxed text-[color:var(--color-ink)]">
               {solution.body}
@@ -440,8 +434,8 @@ export default function UseCasePage(props: UseCasePageProps) {
       <section className="section-soft py-20 md:py-24">
         <div className="page">
           <div className="max-w-3xl">
-            <span className="eyebrow-muted">What you get</span>
-            <h2 className="mt-3">Capabilities that make this use case real.</h2>
+            <SectionEyebrow>What you get</SectionEyebrow>
+            <h2 className="mt-4">Capabilities that make this use case real.</h2>
           </div>
           <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
             {features.map((c, i) => {
@@ -519,12 +513,7 @@ export default function UseCasePage(props: UseCasePageProps) {
       <section className="section-dark py-20 md:py-24">
         <div className="page">
           <div className="max-w-3xl">
-            <span
-              className="inline-flex items-center gap-2 rounded-full px-3 py-1 text-[11px] font-bold uppercase tracking-[0.18em] text-white"
-              style={{ background: palette.accent }}
-            >
-              Proof
-            </span>
+            <SectionEyebrow accent={palette.accent}>Proof</SectionEyebrow>
             <h2 className="mt-4">Trusted where access-control mistakes are expensive.</h2>
           </div>
           <div className="mt-10 testimonials-dark-overrides">
@@ -536,8 +525,8 @@ export default function UseCasePage(props: UseCasePageProps) {
       {/* FAQ */}
       <section className="page py-20 md:py-24">
         <div className="max-w-3xl">
-          <span className="eyebrow-muted">FAQ</span>
-          <h2 className="mt-3 accent-bar">Common questions.</h2>
+          <SectionEyebrow>FAQ</SectionEyebrow>
+          <h2 className="mt-4 accent-bar">Common questions.</h2>
         </div>
         <div className="mt-10 max-w-4xl">
           <Accordion items={faq} />
@@ -560,9 +549,7 @@ export default function UseCasePage(props: UseCasePageProps) {
           style={{ background: `radial-gradient(circle, ${palette.primary}ee 0%, ${palette.primary}00 60%)` }}
         />
         <div className="relative page max-w-3xl text-center mx-auto">
-          <span className="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/20 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.18em] text-white">
-            10-minute PoC
-          </span>
+          <SectionEyebrow tone="dark">10-minute PoC</SectionEyebrow>
           <h2 className="mt-4 text-white">Try it now, on your laptop.</h2>
           <p className="mt-5 text-white/90 text-[17px] leading-relaxed">
             Build the all-in-one Docker image, point your browser at port 5601,

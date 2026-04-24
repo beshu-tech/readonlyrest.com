@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react';
 import Icon, { type IconName } from '../Icon';
+import SectionEyebrow from '../SectionEyebrow';
 
 type Tier = 'Free' | 'PRO' | 'Enterprise';
 
@@ -270,9 +271,7 @@ export default function FeatureCards() {
         {/* Header with stat badges */}
         <div className="grid md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] gap-10 md:gap-16 items-end">
           <div>
-            <span className="inline-flex items-center gap-2 rounded-full bg-[color:var(--color-hot-pink)]/10 px-3 py-1 text-[12px] font-bold uppercase tracking-[0.16em] text-[color:var(--color-hot-pink)]">
-              Features
-            </span>
+            <SectionEyebrow>Features</SectionEyebrow>
             <h2 className="mt-4 accent-bar">Everything you need for Elastic security.</h2>
           </div>
           <ul className="flex flex-wrap gap-3 md:justify-end">
@@ -374,9 +373,7 @@ export default function FeatureCards() {
           />
           <div className="relative page">
             <div className="max-w-2xl">
-              <span className="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/15 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.16em] text-white/80">
-                Operational wins
-              </span>
+              <SectionEyebrow tone="dark">Operational wins</SectionEyebrow>
               <h3 className="mt-4 !text-[24px] !font-extrabold text-white tracking-tight">
                 Features that make production life easier.
               </h3>

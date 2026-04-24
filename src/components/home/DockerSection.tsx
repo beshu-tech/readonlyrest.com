@@ -1,5 +1,6 @@
 import Icon from '../Icon';
 import CopyButton from '../CopyButton';
+import SectionEyebrow from '../SectionEyebrow';
 
 const BUILD_CMD = `docker build -t ror --rm \\
   https://readonlyrest.com/docker-demo`;
@@ -48,11 +49,10 @@ export default function DockerSection() {
 
       <div className="relative page">
         <div className="max-w-3xl">
-          <span className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.2em] text-[color:var(--color-teal)]">
-            <span aria-hidden className="inline-block w-6 h-px bg-[color:var(--color-teal)]" />
+          <SectionEyebrow tone="dark" icon={<Icon name="terminal" size={12} />}>
             10-minute PoC
-          </span>
-          <h2 className="mt-5 text-white tracking-tight">
+          </SectionEyebrow>
+          <h2 className="mt-4 text-white tracking-tight">
             Try it now with Docker.
           </h2>
           <p className="mt-5 text-[17px] md:text-[18px] text-white/75 leading-relaxed">

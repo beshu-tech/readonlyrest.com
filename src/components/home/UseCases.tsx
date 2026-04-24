@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import Icon from '../Icon';
+import SectionEyebrow from '../SectionEyebrow';
 import { USE_CASES } from '@/pages/why';
 
 /**
@@ -35,9 +36,7 @@ export default function UseCases() {
 
       <div className="relative page">
         <div className="max-w-3xl">
-          <span className="inline-flex items-center gap-2 rounded-full bg-[color:var(--color-hot-pink)]/15 border border-[color:var(--color-hot-pink)]/30 px-3 py-1 text-[12px] font-bold uppercase tracking-[0.16em] text-[color:var(--color-hot-pink)]">
-            Use cases
-          </span>
+          <SectionEyebrow tone="dark">Use cases</SectionEyebrow>
           <h2 className="mt-4 tracking-tight text-white">Four wins. One plugin.</h2>
           <p className="mt-5 text-[17px] text-white/70 max-w-2xl leading-relaxed">
             Most teams don&apos;t need the full Elastic Platinum bundle &mdash; they need

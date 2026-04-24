@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Accordion, { type FaqItem } from '../Accordion';
+import SectionEyebrow from '../SectionEyebrow';
 
 const COMMERCIAL: readonly FaqItem[] = [
   {
@@ -84,8 +85,8 @@ export default function Faq() {
   return (
     <section className="page py-20 md:py-24">
       <div className="max-w-3xl">
-        <p className="eyebrow-muted">FAQ</p>
-        <h2 className="mt-3">Answers to the usual questions.</h2>
+        <SectionEyebrow>FAQ</SectionEyebrow>
+        <h2 className="mt-4">Answers to the usual questions.</h2>
       </div>
 
       <div className="mt-10 inline-flex p-1 rounded-md bg-[color:var(--color-surface-soft)] border border-[color:var(--color-border-subtle)]">

@@ -3,6 +3,7 @@ import FaqProduct from '@/components/FaqProduct';
 import TestimonialCards from '@/components/TestimonialCards';
 import Icon from '@/components/Icon';
 import Seo from '@/seo/Seo';
+import SectionEyebrow from '@/components/SectionEyebrow';
 import {
   organizationSchema,
   websiteSchema,
@@ -195,7 +196,7 @@ export default function Download() {
       <section className="section-dark py-20">
         <div className="page">
           <div className="max-w-3xl">
-            <p className="eyebrow-dark">Customers</p>
+            <SectionEyebrow tone="dark">Customers</SectionEyebrow>
             <h2 className="mt-3">Who trusts ReadonlyREST.</h2>
           </div>
           <div className="mt-10">

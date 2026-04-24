@@ -1,4 +1,5 @@
 import Icon from '../Icon';
+import SectionEyebrow from '../SectionEyebrow';
 
 /**
  * "We will work together" — full-width dark editorial hero with the team
@@ -44,10 +45,8 @@ export default function WeWorkTogether() {
 
       <div className="relative page py-24 md:py-32 min-h-[clamp(440px,58vh,620px)] flex flex-col justify-center">
         <div className="max-w-xl">
-          <span className="text-[11px] font-bold uppercase tracking-[0.22em] text-white/60">
-            The team
-          </span>
-          <h2 className="mt-5 text-white tracking-tight">
+          <SectionEyebrow tone="dark">The team</SectionEyebrow>
+          <h2 className="mt-4 text-white tracking-tight">
             We will work together.
           </h2>
           <p className="mt-6 text-[18px] md:text-[19px] text-white/80 leading-relaxed">

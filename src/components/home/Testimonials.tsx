@@ -1,6 +1,7 @@
 import TestimonialCards from '../TestimonialCards';
 import Icon from '../Icon';
 import type { IconName } from '../Icon';
+import SectionEyebrow from '../SectionEyebrow';
 
 interface Stat { value: string; label: string }
 interface Segment { num: string; label: string; tone: 'pink' | 'teal' | 'ink'; icon: IconName }
@@ -31,8 +32,8 @@ export default function Testimonials() {
     <section className="section-soft py-20 md:py-24">
       <div className="page">
         <div className="max-w-3xl">
-          <p className="eyebrow">Since 2017</p>
-          <h2 className="mt-3" style={{ textWrap: 'balance' }}>
+          <SectionEyebrow>Since 2017</SectionEyebrow>
+          <h2 className="mt-4" style={{ textWrap: 'balance' }}>
             Hundreds of remarkable organisations{' '}
             <span className="text-[color:var(--color-ink-soft)]">trust&nbsp;us.</span>
           </h2>
@@ -85,9 +86,9 @@ export default function Testimonials() {
         {/* Proud to protect — editorial band */}
         <div className="mt-16 md:mt-20 grid md:grid-cols-12 gap-10 md:gap-14 items-start">
           <div className="md:col-span-5">
-            <p className="eyebrow">Who we protect</p>
+            <SectionEyebrow>Who we protect</SectionEyebrow>
             <h3
-              className="mt-3 text-[26px] md:text-[30px] font-extrabold tracking-tight leading-[1.15]"
+              className="mt-4 text-[26px] md:text-[30px] font-extrabold tracking-tight leading-[1.15]"
               style={{ color: 'var(--color-ink)', textWrap: 'balance' }}
             >
               Proud to protect the data of{' '}

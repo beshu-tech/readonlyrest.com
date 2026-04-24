@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 import Icon from '../Icon';
+import SectionEyebrow from '../SectionEyebrow';
 
 interface Plan {
   title: string;
@@ -124,8 +125,8 @@ export default function ForKibana() {
     <section id="for-kibana" className="section-dark py-20 md:py-24">
       <div className="page">
         <div className="max-w-3xl">
-          <p className="eyebrow-dark">Using Kibana?</p>
-          <h2 className="mt-3">Three tiers. One upgrade path.</h2>
+          <SectionEyebrow tone="dark">Using Kibana?</SectionEyebrow>
+          <h2 className="mt-4">Three tiers. One upgrade path.</h2>
           <p className="mt-5 text-[17px] text-white/75 max-w-2xl">
             Start with the free plugin. Graduate to PRO for a centralized security
             settings UI, or Enterprise for multi-tenancy and SSO.

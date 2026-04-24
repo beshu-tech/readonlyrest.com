@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 import Icon, { type IconName } from '../Icon';
+import SectionEyebrow from '../SectionEyebrow';
 
 interface Value {
   title: string;
@@ -80,9 +81,7 @@ export default function OurValues() {
       <div className="relative page">
         <div className="grid md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] gap-10 md:gap-16 items-end">
           <div>
-            <span className="inline-flex items-center gap-2 rounded-full bg-[color:var(--color-hot-pink)]/10 px-3 py-1 text-[12px] font-bold uppercase tracking-[0.16em] text-[color:var(--color-hot-pink)]">
-              How we work
-            </span>
+            <SectionEyebrow>How we work</SectionEyebrow>
             <h2 className="mt-4 tracking-tight">
               Four principles, one promise.
             </h2>

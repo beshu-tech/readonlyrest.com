@@ -1,4 +1,5 @@
 import Icon from '../Icon';
+import SectionEyebrow from '../SectionEyebrow';
 
 const KUBE_BLUE = '#326CE5';
 
@@ -31,14 +32,10 @@ export default function KubernetesSection() {
       <div className="relative page grid lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] gap-12 lg:gap-16 items-center">
         {/* Left: copy + benefit chips + CTAs */}
         <div>
-          <span
-            className="inline-flex items-center gap-2 rounded-full px-3 py-1 text-[11px] font-bold uppercase tracking-[0.18em] text-white"
-            style={{ background: KUBE_BLUE }}
-          >
-            <HexIcon />
+          <SectionEyebrow accent={KUBE_BLUE} icon={<HexIcon />}>
             Kubernetes
-          </span>
-          <h2 className="mt-5 tracking-tight">
+          </SectionEyebrow>
+          <h2 className="mt-4 tracking-tight">
             Kubernetes-native security.
           </h2>
           <p className="mt-6 text-[18px] md:text-[19px] text-[color:var(--color-ink)] leading-relaxed">

@@ -1,4 +1,5 @@
 import Icon from '../Icon';
+import SectionEyebrow from '../SectionEyebrow';
 
 interface Plan {
   title: string;
@@ -58,9 +59,7 @@ export default function ElasticsearchOnly() {
     <section className="section-soft py-20 md:py-28">
       <div className="page">
         <div className="max-w-3xl">
-          <span className="inline-flex items-center gap-2 rounded-full bg-[color:var(--color-hot-pink)]/10 px-3 py-1 text-[12px] font-bold uppercase tracking-[0.16em] text-[color:var(--color-hot-pink)]">
-            Elasticsearch-only users
-          </span>
+          <SectionEyebrow>Elasticsearch-only users</SectionEyebrow>
           <h2 className="mt-4 tracking-tight">No Kibana? No problem.</h2>
           <p className="mt-5 text-[17px] text-[color:var(--color-ink-soft)] max-w-2xl leading-relaxed">
             Two editions of the Elasticsearch plugin, for two licensing realities.{' '}
