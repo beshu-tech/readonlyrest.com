@@ -20,9 +20,10 @@ const VALUES: readonly Value[] = [
     lead: 'Convention over configuration. The weakest link in security is human error.',
     body: (
       <>
-        A reference in Elasticsearch and Kibana security since 2013. As a side
-        effect, our solution <strong className="text-white">integrates in hours</strong>
-        {' '}— not days or weeks.
+        The open-source Elasticsearch plugin has been a reference since
+        2013. As a side effect, our solution{' '}
+        <strong className="text-white">integrates in hours</strong> — not
+        days or weeks.
       </>
     ),
   },
@@ -45,8 +46,9 @@ const VALUES: readonly Value[] = [
     lead: 'The engineers who wrote the code answer your tickets.',
     body: (
       <>
-        Best-in-class support — no offshore help-desk, no ticket bouncing.
-        An SLA you can read in one page.
+        Enterprise includes <strong className="text-white">Priority Support</strong> —
+        private email support with a max 2-working-day response SLA.
+        No offshore help-desk, no ticket bouncing.
       </>
     ),
   },
@@ -99,8 +101,8 @@ export default function OurValues() {
             </h2>
           </div>
           <p className="text-[17px] text-white/70 leading-relaxed md:max-w-xl">
-            Since 2017 ReadonlyREST has been a reference in Elasticsearch and
-            Kibana security. These four principles are why customers keep
+            Open-source Elasticsearch plugin since 2013. Commercial Kibana
+            plugin since 2017. These four principles are why customers keep
             renewing.
           </p>
         </div>
@@ -157,9 +159,9 @@ export default function OurValues() {
             masonry left behind, and gives the section a grounded ending. */}
         <div className="mt-10 grid grid-cols-2 md:grid-cols-4 divide-x divide-y md:divide-y-0 divide-white/10 rounded-[var(--radius-card)] overflow-hidden bg-white/[0.03] border border-white/10">
           {[
-            { v: 'Since 2017', l: 'ReadonlyREST in production' },
+            { v: '2013', l: 'OSS Elasticsearch plugin' },
+            { v: '2017', l: 'Commercial Kibana plugin' },
             { v: 'Monthly', l: 'Release cadence' },
-            { v: 'SLA', l: 'Support by the authors' },
             { v: 'CERN-scale', l: 'Performance-tested' },
           ].map((s) => (
             <div key={s.l} className="px-6 py-5 md:px-7 md:py-6">

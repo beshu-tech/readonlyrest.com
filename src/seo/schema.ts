@@ -150,7 +150,7 @@ export const softwareApplicationSchema = () => ({
     },
   ],
   featureList: [
-    'LDAP, SAML, OpenID Connect, JWT, Kerberos authentication',
+    'LDAP, SAML, OpenID Connect, JWT, Active Directory authentication',
     'Index, document and field level security',
     'Kibana multi-tenancy (1000+ tenants per cluster)',
     'Audit logging to any Elasticsearch index or external sink',

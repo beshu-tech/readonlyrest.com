@@ -10,7 +10,7 @@ const hero: { img: string; alt: string } = {
 const problemBody: ReactNode = h(
   'p',
   null,
-  'Elastic puts SAML, OIDC and Kerberos behind the Platinum subscription. ',
+  'Elastic puts SAML and OIDC behind the Platinum subscription. ',
   'That turns single sign-on — table stakes in any regulated environment — ',
   'into a five- or six-figure annual line item per cluster. For most teams, ',
   'SSO is not the reason they bought Elasticsearch.',
@@ -31,8 +31,9 @@ const faq: { q: string; a: ReactNode }[] = [
     a: h(
       'span',
       null,
-      'SAML 2.0, OpenID Connect, JWT, LDAP and Kerberos. Works with Okta, ',
-      'Azure AD, Keycloak, Ping, AD FS, OneLogin and any standards-compliant IdP.',
+      'SAML 2.0, OpenID Connect, JWT, LDAP and Active Directory. Works with ',
+      'Okta, Azure AD, Keycloak, Ping, AD FS, OneLogin and any standards-compliant IdP. ',
+      'Proxy-delegated and external-HTTP authentication are also supported for non-standard setups.',
     ),
   },
   {
@@ -66,7 +67,7 @@ const faq: { q: string; a: ReactNode }[] = [
 const faqPlain: readonly FaqPair[] = [
   {
     q: 'Which SSO protocols are supported?',
-    a: 'SAML 2.0, OpenID Connect, JWT, LDAP and Kerberos. Works with Okta, Azure AD, Keycloak, Ping, AD FS, OneLogin and any standards-compliant IdP.',
+    a: 'SAML 2.0, OpenID Connect, JWT, LDAP and Active Directory. Works with Okta, Azure AD, Keycloak, Ping, AD FS, OneLogin and any standards-compliant IdP. Proxy-delegated and external-HTTP authentication are also supported.',
   },
   {
     q: 'Does this require a specific Elastic tier?',
@@ -92,10 +93,10 @@ export const SSO_WITHOUT_PLATINUM_DATA: UseCasePageProps = {
   seoTitle:
     'SSO for Elasticsearch and Kibana without Platinum \u2014 SAML, OIDC, LDAP',
   seoDescription:
-    'Add SAML, OIDC, LDAP and Kerberos to Elasticsearch and Kibana on any tier \u2014 Basic, Gold, or OSS. Skip the Platinum upgrade, keep the same IdP.',
+    'Add SAML, OIDC, LDAP and Active Directory to Elasticsearch and Kibana on any tier \u2014 Basic, Gold, or OSS. Skip the Platinum upgrade, keep the same IdP.',
   eyebrow: 'No Platinum required',
   subheading:
-    'SAML, OIDC, LDAP and Kerberos on any Elasticsearch tier \u2014 Basic, Gold or OSS. Keep your existing IdP, skip the Platinum upgrade.',
+    'SAML, OIDC, LDAP and Active Directory on any Elasticsearch tier \u2014 Basic, Gold or OSS. Keep your existing IdP, skip the Platinum upgrade.',
   heroImage: hero.img,
   heroImageAlt: hero.alt,
   palette: {
@@ -108,7 +109,7 @@ export const SSO_WITHOUT_PLATINUM_DATA: UseCasePageProps = {
     withoutLabel: 'Without ReadonlyREST',
     withLabel: 'With ReadonlyREST',
     rows: [
-      { label: 'SSO protocols', without: 'Platinum-tier only', with: 'SAML, OIDC, LDAP, Kerberos, JWT' },
+      { label: 'SSO protocols', without: 'Platinum-tier only', with: 'SAML, OIDC, LDAP, AD, JWT' },
       { label: 'License cost', without: 'Five to six figures / cluster / year', with: 'Free tier covers most teams' },
       { label: 'Basic / OSS tier', without: 'File users only \u2014 no IdP', with: 'All IdPs on every tier' },
       { label: 'Group sync', without: 'Manual role mappings', with: 'Auto from SAML / LDAP assertions' },
@@ -144,8 +145,8 @@ export const SSO_WITHOUT_PLATINUM_DATA: UseCasePageProps = {
       },
       {
         icon: 'shield',
-        title: 'Kerberos',
-        body: 'Windows-native desktop SSO for users already logged into the domain.',
+        title: 'JWT & Proxy',
+        body: 'Signed JWTs (HMAC, RSA, EC) for APIs and iframes; reverse-proxy and external-HTTP delegation for non-standard setups.',
       },
     ],
   },

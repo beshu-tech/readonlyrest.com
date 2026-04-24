@@ -31,7 +31,7 @@ export const USE_CASES: readonly UseCase[] = [
     title: 'SSO without Platinum',
     shortLabel: 'SSO without Platinum',
     blurb:
-      'SAML, OIDC, LDAP and Kerberos on any Elastic tier — including Basic.',
+      'SAML, OIDC, LDAP and Active Directory on any Elastic tier — including Basic.',
     icon: 'key',
     color: '#0b847a',
     tag: 'Identity',

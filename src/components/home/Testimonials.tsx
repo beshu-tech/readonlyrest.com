@@ -7,17 +7,17 @@ interface Segment { num: string; label: string; tone: 'pink' | 'teal' | 'ink'; i
 
 const STATS: readonly Stat[] = [
   { value: '1000+', label: 'Tenants in a single cluster' },
-  { value: '9 yrs', label: 'In production since 2017' },
-  { value: '4 wk', label: 'Free trial, extendable on request' },
+  { value: '2013', label: 'OSS Elasticsearch plugin' },
+  { value: '4 wk', label: 'Free trial, extendable' },
   { value: 'Monthly', label: 'Releases with fixes & features' },
 ];
 
 const SEGMENTS: readonly Segment[] = [
-  { num: '2×', label: 'S&P 500 top 5', tone: 'pink', icon: 'chart' },
-  { num: '3×', label: 'Nuclear research labs', tone: 'teal', icon: 'spark' },
-  { num: '2×', label: 'EU institutions', tone: 'ink', icon: 'building' },
-  { num: '2×', label: 'Children-focused charities', tone: 'teal', icon: 'shield' },
-  { num: '—', label: 'Various government bodies', tone: 'ink', icon: 'award' },
+  { num: '2+', label: 'S&P 500 top 5', tone: 'pink', icon: 'chart' },
+  { num: '3+', label: 'Nuclear research labs', tone: 'teal', icon: 'spark' },
+  { num: '2', label: 'European Union institutions', tone: 'ink', icon: 'building' },
+  { num: '2+', label: 'Children-focused charities', tone: 'teal', icon: 'shield' },
+  { num: '3+', label: 'Government bodies', tone: 'ink', icon: 'award' },
 ];
 
 const TONE_BG: Record<Segment['tone'], string> = {

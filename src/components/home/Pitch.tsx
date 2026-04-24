@@ -10,7 +10,7 @@ interface Feature { icon: IconName; body: ReactNode }
 
 const FEATURES: readonly Feature[] = [
   { icon: 'lock', body: 'Granular access control on indices, documents, and fields' },
-  { icon: 'building', body: 'Enterprise auth: LDAP, SAML, OIDC, JWT, Kerberos' },
+  { icon: 'building', body: 'Enterprise auth: LDAP, SAML, OIDC, JWT, Active Directory' },
   {
     icon: 'cloud',
     body: (
