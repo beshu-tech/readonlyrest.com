@@ -8,6 +8,9 @@ import SsoWithoutPlatinum from '@/pages/why/SsoWithoutPlatinum';
 import FlsDlsWithoutPlatinum from '@/pages/why/FlsDlsWithoutPlatinum';
 import SecureKibanaEmbeds from '@/pages/why/SecureKibanaEmbeds';
 import PlatinumOnBasicCloud from '@/pages/why/PlatinumOnBasicCloud';
+import AuditCompliance from '@/pages/why/AuditCompliance';
+import DevSecOpsAclTesting from '@/pages/why/DevSecOpsAclTesting';
+import FipsCompliance from '@/pages/why/FipsCompliance';
 import Privacy from '@/pages/legal/Privacy';
 import Terms from '@/pages/legal/Terms';
 
@@ -32,6 +35,9 @@ export default function App() {
           <Route path="/why/fls-dls-without-platinum" element={<FlsDlsWithoutPlatinum />} />
           <Route path="/why/secure-kibana-embeds" element={<SecureKibanaEmbeds />} />
           <Route path="/why/platinum-on-basic-cloud" element={<PlatinumOnBasicCloud />} />
+          <Route path="/why/audit-compliance" element={<AuditCompliance />} />
+          <Route path="/why/devsecops-acl-testing" element={<DevSecOpsAclTesting />} />
+          <Route path="/why/fips-compliance" element={<FipsCompliance />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<Terms />} />
         </Routes>

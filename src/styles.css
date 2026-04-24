@@ -351,3 +351,143 @@
 .testimonials-dark-overrides blockquote {
   color: rgb(255 255 255 / 0.85) !important;
 }
+
+/* ---------------------------------------------------------------------- */
+/* "Who we protect" bubble cluster                                         */
+/*                                                                         */
+/* Replaces the old flat/divided list with a floating infographic: each    */
+/* segment is a coloured circle with a big number + icon + label, sitting  */
+/* on a soft radial glow. Continuous micro-float + hover scale + scroll-   */
+/* triggered stagger-in give it life without leaning on a JS animation     */
+/* framework.                                                              */
+/* ---------------------------------------------------------------------- */
+
+@keyframes ror-bubble-float {
+  0%, 100% { transform: translateY(0) translateX(0); }
+  50%      { transform: translateY(-10px) translateX(3px); }
+}
+
+@keyframes ror-bubble-enter {
+  0%   { opacity: 0; transform: translateY(16px) scale(0.85); }
+  60%  { opacity: 1; transform: translateY(-4px) scale(1.04); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.bubble-cluster {
+  /* Establish the bounded canvas the bubbles live inside. Intrinsic
+     ratio keeps the composition rhythmic on any width. */
+  position: relative;
+  width: 100%;
+  aspect-ratio: 5 / 4.4;
+  min-height: 460px;
+}
+
+@media (max-width: 767px) {
+  /* On narrow widths the asymmetric absolute composition can't fit, so
+     collapse to a centered flex-wrap where each bubble lives as a
+     normal flow item. Labels and discs keep their styles; only the
+     positioning changes. */
+  .bubble-cluster {
+    aspect-ratio: auto;
+    min-height: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px 28px;
+    padding: 8px 0;
+  }
+  .bubble-cluster .bubble {
+    position: static;
+    width: auto;
+    left: auto;
+    top: auto;
+  }
+}
+
+.bubble {
+  position: absolute;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  /* Stagger-in runs once; float loops forever after. */
+  animation:
+    ror-bubble-enter 0.7s cubic-bezier(0.22, 1, 0.36, 1) both,
+    ror-bubble-float 7s ease-in-out infinite;
+  animation-delay: var(--enter-delay, 0ms), var(--float-delay, 0ms);
+  transition:
+    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.3s ease;
+  cursor: default;
+}
+
+.bubble-disc {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  background: var(--tone);
+  color: #fff;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  font-size: calc(var(--size) * 0.24);
+  /* Combined glow + depth: inner highlight, outer colored glow, soft
+     drop shadow for the levitation effect. */
+  box-shadow:
+    inset 0 -8px 18px rgb(0 0 0 / 0.22),
+    inset 0 4px 10px rgb(255 255 255 / 0.12),
+    0 14px 36px -12px color-mix(in srgb, var(--tone) 55%, transparent),
+    0 2px 8px rgb(0 0 0 / 0.08);
+  position: relative;
+  isolation: isolate;
+}
+
+/* Gloss highlight on top — thin elliptical tint that makes it feel 3D. */
+.bubble-disc::before {
+  content: "";
+  position: absolute;
+  inset: 6% 12% auto 12%;
+  height: 30%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgb(255 255 255 / 0.35), rgb(255 255 255 / 0) 70%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Number + icon slot sits above the gloss. */
+.bubble-inner {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.2em;
+}
+
+.bubble-label {
+  margin-top: 14px;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.25;
+  color: var(--color-ink);
+  max-width: 14ch;
+}
+
+/* Hover: scale the disc, punch the glow, dim siblings. */
+.bubble-cluster:hover .bubble { filter: saturate(0.85) opacity(0.7); }
+.bubble-cluster .bubble:hover { filter: none; transform: scale(1.06); z-index: 3; }
+.bubble-cluster .bubble:hover .bubble-disc {
+  box-shadow:
+    inset 0 -8px 18px rgb(0 0 0 / 0.22),
+    inset 0 4px 10px rgb(255 255 255 / 0.12),
+    0 22px 50px -10px color-mix(in srgb, var(--tone) 70%, transparent),
+    0 2px 8px rgb(0 0 0 / 0.1);
+}
+
+/* Respect user's motion preferences. */
+@media (prefers-reduced-motion: reduce) {
+  .bubble { animation: ror-bubble-enter 0.4s ease-out both; }
+}

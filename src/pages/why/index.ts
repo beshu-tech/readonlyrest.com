@@ -4,10 +4,27 @@ import type { IconName } from '@/components/Icon';
  * Registry of /why/* use-case landing pages.
  *
  * Single source of truth: consumed by the nav "Use cases" dropdown, the
- * home page Use cases section, the footer column, and the sitemap.
- * Keep slugs URL-stable once shipped — they're in the sitemap and likely
- * in Google's index.
+ * home page Use cases section (with topic filter), the footer column,
+ * and the sitemap. Keep slugs URL-stable once shipped — they're in the
+ * sitemap and likely in Google's index.
  */
+
+/**
+ * Narrow, hand-curated topic set. Kept short so the filter bar reads at
+ * a glance and every topic has at least two cards (otherwise filtering
+ * by it returns a single item, which is more confusing than useful).
+ */
+export const TOPICS = [
+  'Cost savings',
+  'Identity',
+  'Access control',
+  'Multi-tenancy',
+  'Compliance',
+  'Architecture',
+] as const;
+
+export type Topic = (typeof TOPICS)[number];
+
 export interface UseCase {
   /** URL slug under /why/. */
   slug: string;
@@ -23,6 +40,8 @@ export interface UseCase {
   color: string;
   /** Short tag text displayed on the home card pill. */
   tag: string;
+  /** Topics used by the home page filter. Each card should carry 1-3. */
+  topics: readonly Topic[];
 }
 
 export const USE_CASES: readonly UseCase[] = [
@@ -35,6 +54,7 @@ export const USE_CASES: readonly UseCase[] = [
     icon: 'key',
     color: '#0b847a',
     tag: 'Identity',
+    topics: ['Cost savings', 'Identity'],
   },
   {
     slug: 'fls-dls-without-platinum',
@@ -45,6 +65,7 @@ export const USE_CASES: readonly UseCase[] = [
     icon: 'lock',
     color: '#ec407a',
     tag: 'Access control',
+    topics: ['Cost savings', 'Access control', 'Compliance'],
   },
   {
     slug: 'secure-kibana-embeds',
@@ -55,6 +76,7 @@ export const USE_CASES: readonly UseCase[] = [
     icon: 'eye-off',
     color: '#4f46e5',
     tag: 'SaaS embedding',
+    topics: ['Multi-tenancy', 'Architecture'],
   },
   {
     slug: 'platinum-on-basic-cloud',
@@ -65,5 +87,39 @@ export const USE_CASES: readonly UseCase[] = [
     icon: 'cloud',
     color: '#2563eb',
     tag: 'Architecture',
+    topics: ['Cost savings', 'Architecture'],
+  },
+  {
+    slug: 'audit-compliance',
+    title: 'Audit logs for SOC2, HIPAA and PCI',
+    shortLabel: 'Audit compliance',
+    blurb:
+      'Ship every Elasticsearch access event off-cluster — ECS-formatted, per-user, per-rule, with zero bolt-on tooling.',
+    icon: 'award',
+    color: '#f59e0b',
+    tag: 'Compliance',
+    topics: ['Compliance', 'Access control'],
+  },
+  {
+    slug: 'devsecops-acl-testing',
+    title: 'Test access control before production',
+    shortLabel: 'Testable ACL',
+    blurb:
+      'Impersonate any user, mock your IdP, sandbox new rules — validate ACL changes in CI, not in incidents.',
+    icon: 'git',
+    color: '#10b981',
+    tag: 'DevOps',
+    topics: ['Access control', 'Identity'],
+  },
+  {
+    slug: 'fips-compliance',
+    title: 'FIPS 140-2 for Elasticsearch',
+    shortLabel: 'FIPS compliance',
+    blurb:
+      'BouncyCastle FIPS crypto for HTTP and inter-node TLS — federal and regulated workloads on any tier.',
+    icon: 'shield',
+    color: '#7c3aed',
+    tag: 'Regulated',
+    topics: ['Compliance'],
   },
 ];

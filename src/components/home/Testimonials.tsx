@@ -13,14 +13,6 @@ const STATS: readonly Stat[] = [
   { value: 'Monthly', label: 'Releases with fixes & features' },
 ];
 
-const SEGMENTS: readonly Segment[] = [
-  { num: '2+', label: 'S&P 500 top 5', tone: 'pink', icon: 'chart' },
-  { num: '3+', label: 'Nuclear research labs', tone: 'teal', icon: 'spark' },
-  { num: '2', label: 'European Union institutions', tone: 'ink', icon: 'building' },
-  { num: '2+', label: 'Children-focused charities', tone: 'teal', icon: 'shield' },
-  { num: '3+', label: 'Government bodies', tone: 'ink', icon: 'award' },
-];
-
 const TONE_BG: Record<Segment['tone'], string> = {
   pink: 'var(--color-hot-pink)',
   teal: 'var(--color-teal)',
@@ -102,30 +94,92 @@ export default function Testimonials() {
               real-world cost. We take that seriously.
             </p>
           </div>
-          <ul className="md:col-span-7 divide-y divide-[color:var(--color-border-subtle)]">
-            {SEGMENTS.map((s) => (
-              <li key={s.label} className="flex items-center gap-4 py-3.5 md:py-4">
-                <span
-                  aria-hidden
-                  className="shrink-0 inline-flex items-center justify-center w-10 h-10 rounded-full text-white font-extrabold text-[13.5px] tracking-tight"
-                  style={{ background: TONE_BG[s.tone] }}
-                >
-                  {s.num}
-                </span>
-                <span className="flex-1 text-[16px] font-medium text-[color:var(--color-ink)]">
-                  {s.label}
-                </span>
-                <Icon
-                  name={s.icon}
-                  size={18}
-                  className="text-[color:var(--color-ink-soft)]/70 shrink-0"
-                />
-              </li>
-            ))}
-          </ul>
+          <div className="md:col-span-7">
+            <BubbleCluster />
+          </div>
         </div>
 
       </div>
     </section>
+  );
+}
+
+/**
+ * Floating bubble cluster showing the customer segments we protect.
+ *
+ * Each bubble is an absolutely-positioned disc with a colored tone, a
+ * big number, a small icon, and a caption underneath. Positions + sizes
+ * are hand-tuned for a deliberate, asymmetric "cluster" feel — not a
+ * grid. Animations:
+ *  - One-shot stagger-in (opacity 0 + scale 0.85 → 1)
+ *  - Continuous micro-float (±10px over 7s, per-bubble delay offset)
+ *  - Hover: the hovered bubble scales up and brightens, siblings dim
+ *    via `.bubble-cluster:hover .bubble` filter.
+ *
+ * Dimensions are in percent of the cluster frame, so the composition
+ * stays proportional at any width. At narrow widths (below md) we fall
+ * back to a simpler stacked grid where the infographic would otherwise
+ * overlap awkwardly.
+ */
+interface Bubble {
+  readonly label: string;
+  readonly num: string;
+  readonly tone: Segment['tone'];
+  readonly icon: IconName;
+  readonly size: number; // px
+  readonly x: number; // % from left
+  readonly y: number; // % from top
+  readonly floatDelay: number; // ms
+}
+
+const BUBBLES: readonly Bubble[] = [
+  // Nuclear research labs — flagship CERN, sits top-left, biggest.
+  { label: 'Nuclear research labs', num: '3+', tone: 'teal', icon: 'spark', size: 168, x: 2, y: 4, floatDelay: 0 },
+  // S&P 500 top 5 — marquee finance, top-right, same weight class.
+  { label: 'S&P 500 top 5', num: '2+', tone: 'pink', icon: 'chart', size: 156, x: 58, y: 2, floatDelay: 1800 },
+  // European Union institutions — centre-left.
+  { label: 'European Union institutions', num: '2', tone: 'ink', icon: 'building', size: 130, x: 28, y: 42, floatDelay: 3400 },
+  // Government bodies — bottom-left, medium.
+  { label: 'Government bodies', num: '3+', tone: 'ink', icon: 'award', size: 116, x: 4, y: 62, floatDelay: 2500 },
+  // Children-focused charities — bottom-right, smallest, teal for warmth.
+  { label: 'Children-focused charities', num: '2+', tone: 'teal', icon: 'shield', size: 108, x: 64, y: 58, floatDelay: 900 },
+];
+
+function BubbleCluster() {
+  return (
+    <div
+      className="bubble-cluster"
+      role="list"
+      aria-label="Customer segments we protect"
+    >
+      {BUBBLES.map((b, i) => (
+        <div
+          key={b.label}
+          role="listitem"
+          className="bubble"
+          style={{
+            left: `${String(b.x)}%`,
+            top: `${String(b.y)}%`,
+            width: `${String(b.size + 32)}px`,
+            ['--size' as string]: `${String(b.size)}px`,
+            ['--tone' as string]: TONE_BG[b.tone],
+            ['--enter-delay' as string]: `${String(i * 90)}ms`,
+            ['--float-delay' as string]: `${String(b.floatDelay)}ms`,
+          }}
+        >
+          <span className="bubble-disc" aria-hidden>
+            <span className="bubble-inner">
+              <span>{b.num}</span>
+              <Icon
+                name={b.icon}
+                size={Math.round(b.size * 0.18)}
+                className="text-white/85"
+              />
+            </span>
+          </span>
+          <span className="bubble-label">{b.label}</span>
+        </div>
+      ))}
+    </div>
   );
 }
