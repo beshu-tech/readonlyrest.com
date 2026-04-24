@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react';
 import Icon, { type IconName } from '../Icon';
 
 type Tier = 'Free' | 'PRO' | 'Enterprise';
@@ -349,12 +349,14 @@ export default function FeatureCards() {
           </div>
         </article>
 
-        {/* First stripe of 3 cards on the soft background. */}
-        <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-5">
+        {/* First stripe — horizontal carousel on the soft background. */}
+        <CarouselRow theme="light" className="mt-8">
           {firstStripe.map((c, i) => (
-            <FeatureCard key={c.title} card={c} palette={palette(i + 1)} theme="light" />
+            <CarouselItem key={c.title}>
+              <FeatureCard card={c} palette={palette(i + 1)} theme="light" />
+            </CarouselItem>
           ))}
-        </div>
+        </CarouselRow>
       </div>
 
       {/* Dark stripe for the second half \u2014 breaks the white rhythm. */}
@@ -379,16 +381,17 @@ export default function FeatureCards() {
                 Features that make production life easier.
               </h3>
             </div>
-            <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+            <CarouselRow theme="dark" className="mt-8">
               {secondStripe.map((c, i) => (
-                <FeatureCard
-                  key={c.title}
-                  card={c}
-                  palette={palette(i + firstStripe.length + 1)}
-                  theme="dark"
-                />
+                <CarouselItem key={c.title}>
+                  <FeatureCard
+                    card={c}
+                    palette={palette(i + firstStripe.length + 1)}
+                    theme="dark"
+                  />
+                </CarouselItem>
               ))}
-            </div>
+            </CarouselRow>
           </div>
         </div>
       )}
@@ -472,5 +475,156 @@ function FeatureCard({
       )}
       {!card.cta && !isDark && <div className="mt-5" />}
     </article>
+  );
+}
+
+/**
+ * Horizontal carousel with CSS scroll-snap and desktop prev/next arrows.
+ *
+ * - Uses the browser's native horizontal scroll (so touch/trackpad work
+ *   out of the box; no third-party dep).
+ * - Each child is wrapped in a fixed-width, snap-start tile via
+ *   `<CarouselItem>`.
+ * - Prev/next buttons scroll by roughly one viewport width of the track,
+ *   disabled at the ends. Edge-fade masks hint at overflow.
+ */
+function CarouselRow({
+  children,
+  theme,
+  className,
+}: {
+  children: ReactNode;
+  theme: 'light' | 'dark';
+  className?: string;
+}) {
+  const trackRef = useRef<HTMLDivElement>(null);
+  const [canPrev, setCanPrev] = useState(false);
+  const [canNext, setCanNext] = useState(false);
+
+  const isDark = theme === 'dark';
+
+  const updateEdges = useCallback(() => {
+    const el = trackRef.current;
+    if (!el) return;
+    setCanPrev(el.scrollLeft > 4);
+    setCanNext(el.scrollLeft + el.clientWidth < el.scrollWidth - 4);
+  }, []);
+
+  useEffect(() => {
+    updateEdges();
+    const el = trackRef.current;
+    if (!el) return;
+    const onScroll = () => { updateEdges(); };
+    el.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', updateEdges);
+    return () => {
+      el.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', updateEdges);
+    };
+  }, [updateEdges]);
+
+  const scrollBy = useCallback((dir: 1 | -1) => {
+    const el = trackRef.current;
+    if (!el) return;
+    // Scroll by ~80% of the visible width, so each click reveals the
+    // next tile group without overshooting.
+    const delta = Math.round(el.clientWidth * 0.85) * dir;
+    el.scrollBy({ left: delta, behavior: 'smooth' });
+  }, []);
+
+  const arrowBase =
+    'inline-flex items-center justify-center w-10 h-10 rounded-full border transition-all disabled:opacity-30 disabled:cursor-not-allowed';
+  const arrowLight =
+    'bg-white border-[color:var(--color-border-subtle)] text-[color:var(--color-ink)] hover:border-[color:var(--color-ink)]/30 hover:shadow-[var(--shadow-card)]';
+  const arrowDark =
+    'bg-white/10 border-white/20 text-white hover:bg-white/15 hover:border-white/35';
+
+  return (
+    <div className={`relative ${className ?? ''}`}>
+      {/* Edge-fade masks — subtle hint that there's more content. */}
+      <div
+        aria-hidden
+        className={`pointer-events-none absolute top-0 bottom-0 left-0 w-8 z-10 transition-opacity ${
+          canPrev ? 'opacity-100' : 'opacity-0'
+        }`}
+        style={{
+          background: isDark
+            ? 'linear-gradient(90deg, rgba(10,10,10,0.85), rgba(10,10,10,0))'
+            : 'linear-gradient(90deg, rgba(247,245,242,0.9), rgba(247,245,242,0))',
+        }}
+      />
+      <div
+        aria-hidden
+        className={`pointer-events-none absolute top-0 bottom-0 right-0 w-8 z-10 transition-opacity ${
+          canNext ? 'opacity-100' : 'opacity-0'
+        }`}
+        style={{
+          background: isDark
+            ? 'linear-gradient(270deg, rgba(10,10,10,0.85), rgba(10,10,10,0))'
+            : 'linear-gradient(270deg, rgba(247,245,242,0.9), rgba(247,245,242,0))',
+        }}
+      />
+
+      <div
+        ref={trackRef}
+        className="flex gap-5 overflow-x-auto snap-x snap-mandatory scroll-px-4 pb-2 -mx-1 px-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        style={{ scrollSnapType: 'x mandatory' }}
+      >
+        {children}
+      </div>
+
+      {/* Controls row — prev/next arrows + a short hint. Only meaningful
+          on desktop; mobile users swipe. */}
+      <div className="mt-6 flex items-center justify-between gap-4">
+        <span
+          className={`text-[13px] ${
+            isDark ? 'text-white/55' : 'text-[color:var(--color-ink-soft)]'
+          }`}
+        >
+          Swipe or use the arrows
+        </span>
+        <div className="flex items-center gap-2">
+          <button
+            type="button"
+            aria-label="Scroll to previous capabilities"
+            onClick={() => { scrollBy(-1); }}
+            disabled={!canPrev}
+            className={`${arrowBase} ${isDark ? arrowDark : arrowLight}`}
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden>
+              <path d="M15 18l-6-6 6-6" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </button>
+          <button
+            type="button"
+            aria-label="Scroll to next capabilities"
+            onClick={() => { scrollBy(1); }}
+            disabled={!canNext}
+            className={`${arrowBase} ${isDark ? arrowDark : arrowLight}`}
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden>
+              <path d="M9 6l6 6-6 6" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/**
+ * A snap-aligned fixed-width tile. We give it a responsive min/max
+ * width so the carousel always shows roughly one-at-a-time on mobile,
+ * two on md, three on lg. Height stretches to the tallest sibling so
+ * the arrows row stays aligned across breakpoints.
+ */
+function CarouselItem({ children }: { children: ReactNode }) {
+  return (
+    <div
+      className="shrink-0 snap-start basis-[min(86vw,360px)] sm:basis-[380px] lg:basis-[calc((100%-2*1.25rem)/3)] flex"
+      style={{ scrollSnapAlign: 'start' }}
+    >
+      <div className="flex flex-col w-full">{children}</div>
+    </div>
   );
 }

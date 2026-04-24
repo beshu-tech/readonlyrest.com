@@ -51,6 +51,23 @@ export default function Testimonials() {
           Trademarks of their respective owners; presence does not imply endorsement.
         </p>
 
+        {/* Quotes — directly under the logo wall so the first proof a reader
+            scans is a customer's voice, not a stat. */}
+        <div className="mt-16 md:mt-20">
+          <div className="flex items-end justify-between flex-wrap gap-4">
+            <h3 className="text-[color:var(--color-ink)]">In their words</h3>
+            <a
+              href="https://readonlyrest.com/blog"
+              className="text-[14px] font-semibold text-[color:var(--color-teal)] inline-flex items-center gap-1.5 no-underline hover:underline"
+            >
+              Read all case studies <Icon name="arrow-right" size={14} />
+            </a>
+          </div>
+          <div className="mt-6">
+            <TestimonialCards />
+          </div>
+        </div>
+
         {/* Stats — dark band */}
         <div className="mt-14 rounded-[var(--radius-card)] overflow-hidden bg-[color:var(--color-surface-dark)] text-white">
           <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-y md:divide-y-0 divide-white/10">
